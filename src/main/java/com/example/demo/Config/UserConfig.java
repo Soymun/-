@@ -24,11 +24,15 @@ public class UserConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
-                .antMatchers("/web").permitAll()
+                .antMatchers("/main").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/registration").permitAll()
+                .antMatchers("/list").authenticated()
+                .antMatchers("/addApp").authenticated()
                 .and()
                 .formLogin().loginPage("/login")
                 .and()
-                .logout().logoutSuccessUrl("/");
+                .logout().permitAll();
     }
     @Bean
     public PasswordEncoder getPasswordEncoder(){

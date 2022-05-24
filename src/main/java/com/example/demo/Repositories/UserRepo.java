@@ -1,5 +1,6 @@
 package com.example.demo.Repositories;
 
+import com.example.demo.Entities.Application;
 import com.example.demo.Entities.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,6 +30,16 @@ public class UserRepo {
         Session session =sessionFactory.openSession();
         session.beginTransaction();
         session.save(user);
+        session.getTransaction().commit();
+    }
+
+    public void addApplication(String username, Application application) {
+        Session session =sessionFactory.openSession();
+        session.beginTransaction();
+        User user = session.createQuery("FROM User u where u.username = :user", User.class).setParameter("user", username)
+                .getResultList().stream().findFirst().orElse(null);
+        user.getApplications().add(application);
+        session.merge(user);
         session.getTransaction().commit();
     }
 }

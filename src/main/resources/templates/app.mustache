@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+Menu:
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}" />
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<a href="/addApp">Add application</a>
+<a href="/main">Main page</a>
+<br>
+List application
+<br>
+{{#list}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{name}}</span>
+    </div>
+{{/list}}
+</body>
+</html>

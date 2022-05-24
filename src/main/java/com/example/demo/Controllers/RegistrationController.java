@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,10 @@ public class RegistrationController {
     }
 
     @GetMapping("/registration")
-    public String registration(){
+    public String registration(Principal principal){
+        if(principal != null){
+            return "redirect:main";
+        }
         return "registration";
     }
     @PostMapping("/registration")

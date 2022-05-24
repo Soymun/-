@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 
+import com.example.demo.Entities.Application;
 import com.example.demo.Entities.Role;
 import com.example.demo.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,9 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         com.example.demo.Entities.User user = findByUsername(username);
         return new User(user.getUsername(), user.getPassword(), user.getRole_id());
+    }
+
+    public void addApplication(String username, Application application){
+        userRepo.addApplication(username, application);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.Entities.Application;
 import com.example.demo.Entities.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -18,6 +19,7 @@ public class Demo16Application {
     public SessionFactory getSessionFactory(){
         return new Configuration()
                 .addAnnotatedClass(User.class)
+                .addAnnotatedClass(Application.class)
                 .buildSessionFactory();
     }
 

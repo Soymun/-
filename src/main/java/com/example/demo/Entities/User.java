@@ -4,6 +4,7 @@ package com.example.demo.Entities;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CollectionType;
 
 import javax.persistence.*;
@@ -28,9 +29,20 @@ public class User {
     @Enumerated(EnumType.ORDINAL)
     private List<Role> role_id;
 
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    @Cascade(value = org.hibernate.annotations.CascadeType.ALL)
+    private List<Application> applications;
+
     public User(String username, String password, List<Role> user) {
         this.username = username;
         this.password = password;
         role_id = user;
+    }
+
+    public void addApplication(Application application){
+        if(application != null){
+            applications.add(application);
+        }
     }
 }
