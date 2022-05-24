@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -19,6 +21,8 @@ public class Application {
     private Long id;
 
     private String name;
+
+    private LocalDate localDateTime;
 
     public Application(String name) {
         this.name = name;

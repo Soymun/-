@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Controller
 public class UserController {
@@ -49,6 +51,7 @@ public class UserController {
             model.addAttribute("message", "Null application");
             return "addApp";
         }
+        application.setLocalDateTime(LocalDate.now());
         userService.addApplication(principal.getName(), application);
         return "redirect:main";
     }
